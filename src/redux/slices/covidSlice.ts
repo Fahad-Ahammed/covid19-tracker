@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "@/types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { CovidData, RootState } from "@/types";
 import { DATA } from "@/lib/data";
 
 const initialState: RootState = {
@@ -18,7 +18,12 @@ const initialState: RootState = {
 const covidSlice = createSlice({
   name: "covid",
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedState: (state, action: PayloadAction<CovidData>) => {
+      state.selectedState = action.payload;
+    },
+  },
 });
 
+export const { setSelectedState } = covidSlice.actions;
 export default covidSlice.reducer;
