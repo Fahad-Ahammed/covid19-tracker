@@ -1,5 +1,6 @@
 import Plot from "react-plotly.js";
 import { FC } from "react";
+import { Data } from "plotly.js";
 
 type LineChartProps = {
   dates: string[];
@@ -16,14 +17,14 @@ const LineChart: FC<LineChartProps> = ({
   recovered,
   deaths,
 }) => {
-  const data = [
+  const data: Data[] = [
     {
       x: dates,
       y: totalCases,
       type: "scatter",
       mode: "lines",
       name: "Total Cases",
-      line: { color: "#3b82f6" }, 
+      line: { color: "#3b82f6" },
     },
     {
       x: dates,
@@ -39,7 +40,7 @@ const LineChart: FC<LineChartProps> = ({
       type: "scatter",
       mode: "lines",
       name: "Recovered",
-      line: { color: "#22c55e" }, // Green for Recovered
+      line: { color: "#22c55e" },
     },
     {
       x: dates,
@@ -47,7 +48,7 @@ const LineChart: FC<LineChartProps> = ({
       type: "scatter",
       mode: "lines",
       name: "Deaths",
-      line: { color: "#ef4444" }, // Red for Deaths
+      line: { color: "#ef4444" },
     },
   ];
 
@@ -56,9 +57,18 @@ const LineChart: FC<LineChartProps> = ({
       <Plot
         data={data}
         layout={{
-          height: 350, 
-          width: "100%",
-          margin: { t: 0, b: 0, l: 0, r: 0 },
+          title: {
+            text: "COVID-19 Cases Over Time",
+            font: {
+              size: 18,
+              color: "#333",
+            },
+            x: 0.5,
+            xanchor: "center",
+          },
+          height: 350,
+          width: 600, // Set width as a number
+          margin: { t: 50, b: 50, l: 40, r: 20 }, // Adjust margins to fit the title
           legend: {
             orientation: "h",
             x: 0.35,
@@ -70,6 +80,7 @@ const LineChart: FC<LineChartProps> = ({
           xaxis: {
             title: "Date",
             showgrid: false,
+            type: "date", // Explicitly set the x-axis to be of type 'date'
           },
           yaxis: {
             title: "Number of Cases",

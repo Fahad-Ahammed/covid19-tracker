@@ -1,5 +1,6 @@
 import Plot from "react-plotly.js";
 import { FC } from "react";
+import { Data } from "plotly.js";
 
 type PieChartProps = {
   activeCases: number;
@@ -8,7 +9,7 @@ type PieChartProps = {
 };
 
 const PieChart: FC<PieChartProps> = ({ activeCases, recovered, deaths }) => {
-  const data = [
+  const data: Data[] = [
     {
       values: [activeCases, recovered, deaths],
       labels: ["Active Cases", "Recovered", "Deaths"],
@@ -25,8 +26,8 @@ const PieChart: FC<PieChartProps> = ({ activeCases, recovered, deaths }) => {
     <Plot
       data={data}
       layout={{
-        height: 350,
-        width: 350,
+        height: 375,
+        width: 450,
         margin: { t: 0, b: 0, l: 0, r: 0 },
         showlegend: true,
         paper_bgcolor: "transparent",
