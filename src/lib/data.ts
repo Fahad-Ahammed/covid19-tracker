@@ -5,7 +5,7 @@ export const DATA: CovidData = {
   states: [
     {
       id: "1",
-      state: "Andhra Pradesh",
+      state: "Andhra Pradesh", coordinates: {'lat': 15.9129, 'lng': 79.74},
       summary: {
         total_cases: 2184242,
         total_recovered: 2152010,
@@ -234,7 +234,7 @@ export const DATA: CovidData = {
     },
     {
       id: "2",
-      state: "Arunachal Pradesh",
+      state: "Arunachal Pradesh", coordinates: {'lat': 28.218, 'lng': 94.7278},
       summary: {
         total_cases: 68391,
         total_recovered: 64458,
@@ -463,7 +463,7 @@ export const DATA: CovidData = {
     },
     {
       id: "3",
-      state: "Assam",
+      state: "Assam", coordinates: {'lat': 26.2006, 'lng': 92.9376},
       summary: {
         total_cases: 604864,
         total_recovered: 586009,
@@ -692,7 +692,7 @@ export const DATA: CovidData = {
     },
     {
       id: "4",
-      state: "Bihar",
+      state: "Bihar", coordinates: {'lat': 25.0961, 'lng': 85.3131},
       summary: {
         total_cases: 1254135,
         total_recovered: 1237464,
@@ -921,7 +921,7 @@ export const DATA: CovidData = {
     },
     {
       id: "5",
-      state: "Chhattisgarh",
+      state: "Chhattisgarh", coordinates: {'lat': 21.2787, 'lng': 81.8661},
       summary: {
         total_cases: 854896,
         total_recovered: 827796,
@@ -1150,7 +1150,7 @@ export const DATA: CovidData = {
     },
     {
       id: "6",
-      state: "Goa",
+      state: "Goa", coordinates: {'lat': 15.2993, 'lng': 74.124},
       summary: {
         total_cases: 254189,
         total_recovered: 247121,
@@ -1379,7 +1379,7 @@ export const DATA: CovidData = {
     },
     {
       id: "7",
-      state: "Gujarat",
+      state: "Gujarat", coordinates: {'lat': 22.2587, 'lng': 71.1924},
       summary: {
         total_cases: 1504498,
         total_recovered: 1472418,
@@ -1608,7 +1608,7 @@ export const DATA: CovidData = {
     },
     {
       id: "8",
-      state: "Haryana",
+      state: "Haryana", coordinates: {'lat': 29.0588, 'lng': 76.0856},
       summary: {
         total_cases: 954692,
         total_recovered: 932361,
@@ -1837,7 +1837,7 @@ export const DATA: CovidData = {
     },
     {
       id: "9",
-      state: "Himachal Pradesh",
+      state: "Himachal Pradesh", coordinates: {'lat': 31.1048, 'lng': 77.1734},
       summary: {
         total_cases: 304300,
         total_recovered: 297110,
@@ -2066,7 +2066,7 @@ export const DATA: CovidData = {
     },
     {
       id: "10",
-      state: "Jharkhand",
+      state: "Jharkhand", coordinates: {'lat': 23.6102, 'lng': 85.2799},
       summary: {
         total_cases: 604919,
         total_recovered: 592120,
@@ -2295,7 +2295,7 @@ export const DATA: CovidData = {
     },
     {
       id: "11",
-      state: "Karnataka",
+      state: "Karnataka", coordinates: {'lat': 15.3173, 'lng': 75.7139},
       summary: {
         total_cases: 3505061,
         total_recovered: 3432592,
@@ -2524,7 +2524,7 @@ export const DATA: CovidData = {
     },
     {
       id: "12",
-      state: "Kerala",
+      state: "Kerala", coordinates: {'lat': 10.8505, 'lng': 76.2711},
       summary: {
         total_cases: 4505222,
         total_recovered: 4422428,
@@ -2753,7 +2753,7 @@ export const DATA: CovidData = {
     },
     {
       id: "13",
-      state: "Madhya Pradesh",
+      state: "Madhya Pradesh", coordinates: {'lat': 22.9734, 'lng': 78.6569},
       summary: {
         total_cases: 1804142,
         total_recovered: 1762446,
@@ -2982,7 +2982,7 @@ export const DATA: CovidData = {
     },
     {
       id: "14",
-      state: "Maharashtra",
+      state: "Maharashtra", coordinates: {'lat': 19.7515, 'lng': 75.7139},
       summary: {
         total_cases: 7504947,
         total_recovered: 7352709,
@@ -3211,7 +3211,7 @@ export const DATA: CovidData = {
     },
     {
       id: "15",
-      state: "Manipur",
+      state: "Manipur", coordinates: {'lat': 24.6637, 'lng': 93.9063},
       summary: {
         total_cases: 155119,
         total_recovered: 149279,
@@ -3440,7 +3440,7 @@ export const DATA: CovidData = {
     },
     {
       id: "16",
-      state: "Meghalaya",
+      state: "Meghalaya", coordinates: {'lat': 25.467, 'lng': 91.3662},
       summary: {
         total_cases: 124598,
         total_recovered: 120424,
@@ -3669,7 +3669,7 @@ export const DATA: CovidData = {
     },
     {
       id: "17",
-      state: "Mizoram",
+      state: "Mizoram", coordinates: {'lat': 23.1645, 'lng': 92.9376},
       summary: {
         total_cases: 94803,
         total_recovered: 91425,
@@ -3898,7 +3898,7 @@ export const DATA: CovidData = {
     },
     {
       id: "18",
-      state: "Nagaland",
+      state: "Nagaland", coordinates: {'lat': 26.1584, 'lng': 94.5624},
       summary: {
         total_cases: 74486,
         total_recovered: 71199,
@@ -4127,7 +4127,7 @@ export const DATA: CovidData = {
     },
     {
       id: "19",
-      state: "Odisha",
+      state: "Odisha", coordinates: {'lat': 20.9517, 'lng': 85.0985},
       summary: {
         total_cases: 1305092,
         total_recovered: 1282473,
@@ -4356,7 +4356,7 @@ export const DATA: CovidData = {
     },
     {
       id: "20",
-      state: "Punjab",
+      state: "Punjab", coordinates: {'lat': 31.1471, 'lng': 75.3412},
       summary: {
         total_cases: 1204750,
         total_recovered: 1172333,
@@ -4585,7 +4585,7 @@ export const DATA: CovidData = {
     },
     {
       id: "21",
-      state: "Rajasthan",
+      state: "Rajasthan", coordinates: {'lat': 27.0238, 'lng': 74.2179},
       summary: {
         total_cases: 1304793,
         total_recovered: 1272473,
@@ -4814,7 +4814,7 @@ export const DATA: CovidData = {
     },
     {
       id: "22",
-      state: "Sikkim",
+      state: "Sikkim", coordinates: {'lat': 27.533, 'lng': 88.5122},
       summary: {
         total_cases: 64492,
         total_recovered: 61311,
@@ -5043,7 +5043,7 @@ export const DATA: CovidData = {
     },
     {
       id: "23",
-      state: "Tamil Nadu",
+      state: "Tamil Nadu", coordinates: {'lat': 11.1271, 'lng': 78.6569},
       summary: {
         total_cases: 3205290,
         total_recovered: 3102100,
@@ -5272,7 +5272,7 @@ export const DATA: CovidData = {
     },
     {
       id: "24",
-      state: "Telangana",
+      state: "Telangana", coordinates: {'lat': 17.1232, 'lng': 79.2088},
       summary: {
         total_cases: 2204894,
         total_recovered: 2162272,
@@ -5501,7 +5501,7 @@ export const DATA: CovidData = {
     },
     {
       id: "25",
-      state: "Tripura",
+      state: "Tripura", coordinates: {'lat': 23.9408, 'lng': 91.9882},
       summary: {
         total_cases: 205295,
         total_recovered: 198836,
@@ -5730,7 +5730,7 @@ export const DATA: CovidData = {
     },
     {
       id: "26",
-      state: "Uttar Pradesh",
+      state: "Uttar Pradesh", coordinates: {'lat': 26.8467, 'lng': 80.9462},
       summary: {
         total_cases: 1804478,
         total_recovered: 1772210,
@@ -5959,7 +5959,7 @@ export const DATA: CovidData = {
     },
     {
       id: "27",
-      state: "Uttarakhand",
+      state: "Uttarakhand", coordinates: {'lat': 30.0668, 'lng': 79.0193},
       summary: {
         total_cases: 454507,
         total_recovered: 442209,
@@ -6188,7 +6188,7 @@ export const DATA: CovidData = {
     },
     {
       id: "28",
-      state: "West Bengal",
+      state: "West Bengal", coordinates: {'lat': 22.9868, 'lng': 87.855},
       summary: {
         total_cases: 2404599,
         total_recovered: 2362078,
@@ -6417,7 +6417,7 @@ export const DATA: CovidData = {
     },
     {
       id: "29",
-      state: "Andaman and Nicobar Islands",
+      state: "Andaman and Nicobar Islands", coordinates: {'lat': 11.7401, 'lng': 92.6586},
       summary: {
         total_cases: 19782,
         total_recovered: 17414,
@@ -6646,7 +6646,7 @@ export const DATA: CovidData = {
     },
     {
       id: "30",
-      state: "Chandigarh",
+      state: "Chandigarh", coordinates: {'lat': 30.7333, 'lng': 76.7794},
       summary: {
         total_cases: 94626,
         total_recovered: 90552,
@@ -6875,7 +6875,7 @@ export const DATA: CovidData = {
     },
     {
       id: "31",
-      state: "Dadra and Nagar Haveli and Daman and Diu",
+      state: "Dadra and Nagar Haveli and Daman and Diu", coordinates: {'lat': 20.4283, 'lng': 72.8397},
       summary: {
         total_cases: 44251,
         total_recovered: 40906,
@@ -7104,7 +7104,7 @@ export const DATA: CovidData = {
     },
     {
       id: "32",
-      state: "Lakshadweep",
+      state: "Lakshadweep", coordinates: {'lat': 10.5667, 'lng': 72.6417},
       summary: {
         total_cases: 14347,
         total_recovered: 12234,
@@ -7333,7 +7333,7 @@ export const DATA: CovidData = {
     },
     {
       id: "33",
-      state: "Delhi",
+      state: "Delhi", coordinates: {'lat': 28.7041, 'lng': 77.1025},
       summary: {
         total_cases: 2004582,
         total_recovered: 1972442,
@@ -7562,7 +7562,7 @@ export const DATA: CovidData = {
     },
     {
       id: "34",
-      state: "Puducherry",
+      state: "Puducherry", coordinates: {'lat': 11.9416, 'lng': 79.8083},
       summary: {
         total_cases: 124396,
         total_recovered: 119434,
@@ -7791,7 +7791,7 @@ export const DATA: CovidData = {
     },
     {
       id: "35",
-      state: "Ladakh",
+      state: "Ladakh", coordinates: {'lat': 34.1526, 'lng': 77.5771},
       summary: {
         total_cases: 54679,
         total_recovered: 51475,
@@ -8020,7 +8020,7 @@ export const DATA: CovidData = {
     },
     {
       id: "36",
-      state: "Jammu and Kashmir",
+      state: "Jammu and Kashmir", coordinates: {'lat': 33.7782, 'lng': 76.5762},
       summary: {
         total_cases: 704916,
         total_recovered: 692629,
