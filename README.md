@@ -1,5 +1,7 @@
 # COVID-19 Tracker Application
 
+Project Link: https://covid19-tracker-vbdb.vercel.app/
+
 This is a web application built with **Next.js**, **Redux**, and **Leaflet** that visualizes COVID-19 data for states in India. It displays total cases, active cases, recoveries, and deaths using charts and a map to show the geographic distribution of cases.
 
 ## Features
