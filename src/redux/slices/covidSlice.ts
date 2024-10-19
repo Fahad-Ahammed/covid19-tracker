@@ -1,29 +1,23 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CovidData, RootState } from "@/types";
-import { DATA } from "@/lib/data";
+import { StateCovidData, RootState } from "@/types"; // Assuming the updated types are correctly imported
+import { DATA } from "@/lib/data"; // Assuming DATA is imported correctly
 
 const initialState: RootState = {
-  selectedState: {
-    id: 1,
-    state: "Andhra Pradesh",
-    totalCases: 2200000,
-    activeCases: 15000,
-    recovered: 2170000,
-    deaths: 30000,
-  },
+  selectedState: DATA.states[0],
   covidData: DATA,
-  filteredStates: [],
 };
 
+// Slice definition
 const covidSlice = createSlice({
   name: "covid",
   initialState,
   reducers: {
-    setSelectedState: (state, action: PayloadAction<CovidData>) => {
+    setSelectedState: (state, action: PayloadAction<StateCovidData>) => {
       state.selectedState = action.payload;
     },
   },
 });
 
+// Exporting actions and reducer
 export const { setSelectedState } = covidSlice.actions;
 export default covidSlice.reducer;
