@@ -1,10 +1,16 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useAppDispatch, useAppSelector } from "@/hooks/useAppStore";
 import { setSelectedState } from "@/redux/slices/covidSlice";
-import PieChart from "@/components/PieChart";
-import LineChart from "@/components/LineChart";
-import MapView from "@/components/MapView";
+// import PieChart from "@/components/PieChart";
+// import LineChart from "@/components/LineChart";
+// import MapView from ";
+const MapView = dynamic(() => import("@/components/MapView"), { ssr: false });
+const LineChart = dynamic(() => import("@/components/LineChart"), {
+  ssr: false,
+});
+const PieChart = dynamic(() => import("@/components/PieChart"), { ssr: false });
 
 export default function Home() {
   const dispatch = useAppDispatch();
