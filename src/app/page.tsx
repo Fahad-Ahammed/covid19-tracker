@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useAppStore";
 import { setSelectedState } from "@/redux/slices/covidSlice";
 import PieChart from "@/components/PieChart";
 import LineChart from "@/components/LineChart";
+import MapView from "@/components/MapView";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -64,7 +65,7 @@ export default function Home() {
       {/* Second Column-Map section*/}
       <section
         aria-labelledby="stats-section"
-        className="col-span-1 xl:col-span-6 bg-white p-6 rounded-lg shadow-md"
+        className="col-span-1 xl:col-span-6 flex flex-col bg-white p-6 rounded-lg shadow-md"
       >
         <div className="mb-6">
           <h2
@@ -92,8 +93,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="bg-gray-100 p-6 rounded-lg shadow-sm">
-          <h1 className="text-2xl font-bold text-gray-800 text-center">Map</h1>
+        <div className="bg-gray-100 min-h-[500px] grow p-6 rounded-lg shadow-sm">
+          <MapView states={covidData.states} selectedState={selectedState} />
         </div>
       </section>
 
