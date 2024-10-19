@@ -1,14 +1,37 @@
-export type CovidData = {
-  id: number;
-  state: string;
-  totalCases: number;
-  activeCases: number;
+// Type for individual daily data
+export type DailyData = {
+  date: string;
+  new_cases: number;
   recovered: number;
   deaths: number;
+  active_cases: number;
 };
 
+// Type for the summary of each state
+export type StateSummary = {
+  total_cases: number;
+  total_recovered: number;
+  active_cases: number;
+  total_deaths: number;
+};
+
+// Type for each state's COVID data, including summary and daily data
+export type StateCovidData = {
+  id: string;
+  state: string;
+  summary: StateSummary;
+  daily_data: DailyData[];
+};
+
+// Type for the overall structure of the dataset
+export type CovidData = {
+  last_updated: string;
+  states: StateCovidData[];
+};
+
+
+// Type for the redux store
 export type RootState = {
-  selectedState: CovidData;
-  covidData: CovidData[];
-  filteredStates: CovidData[];
+  selectedState: StateCovidData;
+  covidData:CovidData;
 };
