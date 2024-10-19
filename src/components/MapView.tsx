@@ -1,81 +1,89 @@
-import { FC, useEffect, useState } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  CircleMarker,
-  Popup,
-  useMap,
-} from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import { LatLngExpression } from "leaflet";
-import { StateCovidData } from "@/types";
-import "leaflet-defaulticon-compatibility";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+"use client"
+
+import { FC, useEffect, useState, useCallback } from "react"
+import { MapContainer, TileLayer, CircleMarker, Popup, useMap, useMapEvents } from "react-leaflet"
+import "leaflet/dist/leaflet.css"
+import { LatLngExpression } from "leaflet"
+import "leaflet-defaulticon-compatibility"
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
+
+// Define the types for your data
+type StateCovidData = {
+  id: string
+  state: string
+  coordinates: { lat: number; lng: number }
+  summary: {
+    total_cases: number
+    active_cases: number
+    total_recovered: number
+    total_deaths: number
+  }
+}
 
 // Define default center for the map (India)
-const defaultCenter: LatLngExpression = [20.5937, 78.9629];
+const defaultCenter: LatLngExpression = [20.5937, 78.9629]
 
 // Function to dynamically set the marker radius based on total cases and zoom level
 const getMarkerRadius = (totalCases: number, zoomLevel: number): number => {
-  return Math.sqrt(totalCases) / (200 / zoomLevel); // Ensure it returns a number
-};
+  return Math.sqrt(totalCases) / (200 / zoomLevel)
+}
 
 // Function to dynamically set marker color based on active cases
 const getMarkerColor = (activeCases: number): string => {
-  if (activeCases > 50000) return "#ef4444"; // Red for high active cases
-  if (activeCases > 10000) return "#f59e0b"; // Orange for medium active cases
-  return "#10b981"; // Green for lower active cases
-};
+  if (activeCases > 50000) return "#ef4444" // Red for high active cases
+  if (activeCases > 10000) return "#f59e0b" // Orange for medium active cases
+  return "#10b981" // Green for lower active cases
+}
 
 // Component to handle zooming to a selected state
-const MapZoom: FC<{ coordinates: { lat: number; lng: number } }> = ({
-  coordinates,
-}) => {
-  const map = useMap();
+const MapZoom: FC<{ coordinates: { lat: number; lng: number } }> = ({ coordinates }) => {
+  const map = useMap()
 
   useEffect(() => {
     if (coordinates) {
-      map.flyTo([coordinates.lat, coordinates.lng], 8); // Zoom to state's coordinates
+      map.flyTo([coordinates.lat, coordinates.lng], 8) // Zoom to state's coordinates
     }
-  }, [coordinates, map]);
+  }, [coordinates, map])
 
-  return null;
-};
+  return null
+}
+
+// Component to handle zoom events
+const ZoomHandler: FC<{ onZoomChange: (zoom: number) => void }> = ({ onZoomChange }) => {
+  const map = useMapEvents({
+    zoomend: () => {
+      onZoomChange(map.getZoom())
+    },
+  })
+  return null
+}
 
 type MapViewProps = {
-  states: StateCovidData[];
-  selectedState: StateCovidData; // Selected state to zoom into
-};
+  states: StateCovidData[]
+  selectedState: StateCovidData | null // Selected state to zoom into
+}
 
 const MapView: FC<MapViewProps> = ({ states, selectedState }) => {
-  const [zoomLevel, setZoomLevel] = useState(5); // Track zoom level
+  const [zoomLevel, setZoomLevel] = useState(5) // Track zoom level
 
-  // Handle zoom level change
-  const handleZoom = (e: any) => {
-    setZoomLevel(e.target.getZoom()); // Track zoom level dynamically
-  };
+  const handleZoomChange = useCallback((newZoom: number) => {
+    setZoomLevel(newZoom)
+  }, [])
 
   return (
-    <MapContainer
-      center={defaultCenter} // Default center on India
-      zoom={5} // Default zoom level
-      style={{ height: "100%", width: "100%" }}
-      whenCreated={(map) => map.on("zoomend", handleZoom)} // Attach zoom event listener
-    >
-      {/* Tile layer for the map */}
+    <MapContainer center={defaultCenter} zoom={5} style={{ height: "100%", width: "100%" }}>
+      <ZoomHandler onZoomChange={handleZoomChange} />
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-
-      {/* Add circle markers for each state's coordinates */}
       {states.map((state) => (
         <CircleMarker
           key={state.id}
-          center={[state.coordinates.lat, state.coordinates.lng]} // LatLngExpression for each state
-          radius={getMarkerRadius(state.summary.total_cases, zoomLevel)} // Adjust radius based on zoom level
+          center={[state.coordinates.lat, state.coordinates.lng]}
+          radius={getMarkerRadius(state.summary.total_cases, zoomLevel)}
           fillOpacity={0.6}
-          color={getMarkerColor(state.summary.active_cases)} // Color based on active cases
+          color={getMarkerColor(state.summary.active_cases)}
           weight={1}
         >
           <Popup>
@@ -103,11 +111,9 @@ const MapView: FC<MapViewProps> = ({ states, selectedState }) => {
           </Popup>
         </CircleMarker>
       ))}
-
-      {/* Zoom to the selected state */}
       {selectedState && <MapZoom coordinates={selectedState.coordinates} />}
     </MapContainer>
-  );
-};
+  )
+}
 
-export default MapView;
+export default MapView
