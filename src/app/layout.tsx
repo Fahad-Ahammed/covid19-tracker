@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import { Roboto } from "next/font/google";
+import { Mulish } from "next/font/google";
 import ReduxProvider from "@/redux/provider";
 
-const roboto = Roboto({
+const roboto = Mulish({
   subsets: ["latin"],
   weight: ["400", "700"],
 });
