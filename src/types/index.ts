@@ -15,11 +15,18 @@ export type StateSummary = {
   total_deaths: number;
 };
 
+// Type for the coordinates (latitude and longitude)
+export type Coordinates = {
+  lat: number;
+  lng: number;
+};
+
 // Type for each state's COVID data, including summary and daily data
 export type StateCovidData = {
   id: string;
   state: string;
   summary: StateSummary;
+  coordinates: Coordinates; // Added coordinates here
   daily_data: DailyData[];
 };
 
@@ -29,9 +36,8 @@ export type CovidData = {
   states: StateCovidData[];
 };
 
-
 // Type for the redux store
 export type RootState = {
   selectedState: StateCovidData;
-  covidData:CovidData;
+  covidData: CovidData;
 };
