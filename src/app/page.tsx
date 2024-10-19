@@ -2,16 +2,32 @@
 
 import { useAppDispatch, useAppSelector } from "@/hooks/useAppStore";
 import { setSelectedState } from "@/redux/slices/covidSlice";
+import PieChart from "@/components/PieChart";
+import LineChart from "@/components/LineChart";
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const { covidData, selectedState } = useAppSelector((state) => state.covid);
-  const { totalCases, activeCases, recovered, deaths } = selectedState;
+  const {
+    total_cases: totalCases,
+    active_cases: activeCases,
+    total_recovered: recovered,
+    total_deaths: deaths,
+  } = selectedState.summary;
+
+  const { daily_data } = selectedState;
+
+  // Extract the data for the line chart
+  const dates = daily_data.map((day) => day.date);
+  const totalCasesLine = daily_data.map((day) => day.new_cases);
+  const activeCasesLine = daily_data.map((day) => day.active_cases);
+  const recoveredLine = daily_data.map((day) => day.recovered);
+  const deathsLine = daily_data.map((day) => day.deaths);
 
   return (
     <div className="mx-auto max-w-screen-md xl:max-w-full grid grid-cols-1 xl:grid-cols-12 gap-6 p-6 h-screen bg-gray-50">
       {/* First Column - State List */}
-      <nav
+      <div
         aria-label="List of Indian States"
         className="col-span-1 xl:col-span-2 bg-white p-6 rounded-lg shadow-md max-h-[calc(100vh-2.5rem)]"
       >
@@ -21,33 +37,40 @@ export default function Home() {
           role="listbox"
           aria-labelledby="state-list"
         >
-          {covidData.map((state) => {
+          {covidData.states.map((ele) => {
             return (
-              <li key={state.id} role="option" aria-selected={selectedState.id === state.id}>
+              <li
+                key={ele.id}
+                role="option"
+                aria-selected={selectedState.id === ele.id}
+              >
                 <button
-                  onClick={() => dispatch(setSelectedState(state))}
+                  onClick={() => dispatch(setSelectedState(ele))}
                   className={`${
-                    selectedState.id === state.id
+                    selectedState.id === ele.id
                       ? "bg-indigo-100 border border-indigo-300 text-indigo-800 hover:bg-indigo-100"
                       : "bg-slate-100 border border-slate-300 hover:bg-blue-100"
                   } w-full p-3 text-lg duration-200 ease-in-out rounded-lg cursor-pointer text-left`}
-                  aria-pressed={selectedState.id === state.id}
+                  aria-pressed={selectedState.id === ele.id}
                 >
-                  {state.state}
+                  {ele.state}
                 </button>
               </li>
             );
           })}
         </ul>
-      </nav>
+      </div>
 
-      {/* Second Column */}
+      {/* Second Column-Map section*/}
       <section
         aria-labelledby="stats-section"
-        className="col-span-1 xl:col-span-7 bg-white p-6 rounded-lg shadow-md"
+        className="col-span-1 xl:col-span-6 bg-white p-6 rounded-lg shadow-md"
       >
         <div className="mb-6">
-          <h2 id="stats-section" className="text-xl font-semibold mb-4 text-gray-800">
+          <h2
+            id="stats-section"
+            className="text-xl font-semibold mb-4 text-gray-800"
+          >
             Stats
           </h2>
           <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 font-[700]">
@@ -74,29 +97,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Third Column */}
+      {/* Third Column - Pie Chart and Line Chart */}
       <section
         aria-labelledby="charts-section"
-        className="col-span-1 xl:col-span-3 bg-white p-6 rounded-lg shadow-md"
+        className="col-span-1 xl:col-span-4 bg-white xl:max-h-screen xl:overflow-hidden p-6 rounded-lg shadow-md flex flex-col justify-between"
       >
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold mb-4 text-gray-800">
+        <div className="h-1/2">
+          <h2 className="text-xl font-semibold mb-2 text-gray-800">
             Pie Chart
           </h2>
-          <div
-            className="bg-gray-100 p-6 rounded-lg text-center shadow-sm text-lg"
-            aria-label="Pie Chart Placeholder"
-          >
-            Chart Area
+          <div className="overflow-scroll flex justify-center items-center p-6 rounded-lg shadow-sm text-lg">
+            <PieChart
+              activeCases={activeCases}
+              recovered={recovered}
+              deaths={deaths}
+            />
           </div>
         </div>
-        <div>
-          <h2 className="text-xl font-semibold mb-4 text-gray-800">Line Chart</h2>
-          <div
-            className="bg-gray-100 p-6 rounded-lg text-center shadow-sm text-lg"
-            aria-label="Line Chart Placeholder"
-          >
-            Chart Area
+
+        <div className="h-1/2">
+          <h2 className="text-xl font-semibold my-4 text-gray-800">
+            Line Chart
+          </h2>
+          <div className="bg-gra-100 overflow-scroll flex justify-center items-center p-6 rounded-lg shadow-sm text-lg">
+            <LineChart
+              dates={dates}
+              totalCases={totalCasesLine}
+              activeCases={activeCasesLine}
+              recovered={recoveredLine}
+              deaths={deathsLine}
+            />
           </div>
         </div>
       </section>
